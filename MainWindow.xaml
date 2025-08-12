@@ -1,0 +1,289 @@
+﻿<Window x:Name="window" x:Class="DaysMatterWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DaysMatterWPF"
+        mc:Ignorable="d"
+        Title="主页" Height="450" Width="350" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="{x:Null}" WindowStartupLocation="CenterScreen" WindowState="Minimized" ShowInTaskbar="False">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <ControlTemplate x:Key="topButtonStyle1" TargetType="{x:Type Button}">
+            <Grid Cursor="{TemplateBinding Cursor}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver">
+                                <VisualTransition.GeneratedEasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </VisualTransition.GeneratedEasingFunction>
+                            </VisualTransition>
+                            <VisualTransition GeneratedDuration="0:0:0.2">
+                                <VisualTransition.GeneratedEasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </VisualTransition.GeneratedEasingFunction>
+                            </VisualTransition>
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="Normal">
+                            <Storyboard>
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+                                    <EasingColorKeyFrame KeyTime="0" Value="#001B7BDA"/>
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+                                    <EasingColorKeyFrame KeyTime="0" Value="#331B7BDA"/>
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+                                    <EasingColorKeyFrame KeyTime="0" Value="#4C1B7BDA"/>
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard>
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+                                    <EasingColorKeyFrame KeyTime="0" Value="#001B7BDA"/>
+                                </ColorAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.FontStyle)" Storyboard.TargetName="textBlock">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <FontStyle>Normal</FontStyle>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                                    <EasingColorKeyFrame KeyTime="0" Value="#331B7BDA"/>
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="FocusStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="0:0:0.2">
+                                <VisualTransition.GeneratedEasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </VisualTransition.GeneratedEasingFunction>
+                            </VisualTransition>
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="Unfocused"/>
+                        <VisualState x:Name="Focused"/>
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="ValidationStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="0:0:0.2">
+                                <VisualTransition.GeneratedEasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </VisualTransition.GeneratedEasingFunction>
+                            </VisualTransition>
+                        </VisualStateGroup.Transitions>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Rectangle x:Name="rectangle" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Fill="#331B7BDA" Cursor="{TemplateBinding Cursor}"/>
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="5,0" TextWrapping="Wrap" Text="{TemplateBinding Content}" VerticalAlignment="Center" Padding="0" Foreground="#FF1B7BDA" Cursor="{TemplateBinding Cursor}"/>
+            </Grid>
+        </ControlTemplate>
+        <SolidColorBrush x:Key="ListBox.Static.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="ListBox.Static.Border" Color="#FFABADB3"/>
+        <SolidColorBrush x:Key="ListBox.Disabled.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="ListBox.Disabled.Border" Color="#FFD9D9D9"/>
+        <Style x:Key="listBoxStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="1" SnapsToDevicePixels="true" CornerRadius="5">
+                            <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Border}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsGrouping" Value="true"/>
+                                    <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#1F26A0DA"/>
+        <SolidColorBrush x:Key="Item.MouseOver.Border" Color="#a826A0Da"/>
+        <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#3DDADADA"/>
+        <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#FFDADADA"/>
+        <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#3D26A0DA"/>
+        <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="#FF26A0DA"/>
+        <Style x:Key="ListBoxItemStyle1" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid Height="Auto">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.2"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFE6E6E6"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.2"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Unselected"/>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke)" Storyboard.TargetName="rectangle">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <SolidColorBrush Color="Gainsboro"/>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="2"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="SelectedUnfocused"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.2"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="Focused"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ValidationStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.2"/>
+                                    </VisualStateGroup.Transitions>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="rectangle" Fill="White" HorizontalAlignment="Stretch" Height="35" RadiusY="3" RadiusX="3" VerticalAlignment="Stretch" Width="Auto" Margin="0"/>
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Storyboard x:Key="start">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="father">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="father">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.9"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="father">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.9"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource start}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid x:Name="father" Background="White" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Grid x:Name="topBar" Height="40" VerticalAlignment="Top" Background="#331B7BDA" MouseLeftButtonDown="topBar_MouseLeftButtonDown">
+            <Image HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Source="img/ico.png" Height="25"/>
+            <Button x:Name="closeButton" Content="×" HorizontalAlignment="Right" Margin="0" Width="50" Template="{DynamicResource topButtonStyle1}" FontSize="20" FontFamily="Arial" Click="closeButton_Click" Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+                        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="1"/>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+        <Grid x:Name="mainView" Margin="0,40,0,0">
+            <Grid x:Name="titleView" Height="70" VerticalAlignment="Top">
+                <TextBlock x:Name="title" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="主页" VerticalAlignment="Center" FontSize="36" FontFamily="Microsoft YaHei UI" Padding="0"/>
+                <Button x:Name="addNewItemButton" Content="＋" HorizontalAlignment="Left" Height="30" Margin="100,2,0,0" Style="{DynamicResource normalButtonStyle}" VerticalAlignment="Center" Width="30" Foreground="White" Background="#FF1E8DDA" FontFamily="Arial" FontWeight="Bold" Click="addNewItemButton_Click"/>
+                <Button x:Name="aboutButton" Content="设置" HorizontalAlignment="Left" Height="30" Margin="135,2,0,0" Style="{DynamicResource normalButtonStyle}" VerticalAlignment="Center" Width="50" Foreground="Black" Background="#19000000" FontFamily="Microsoft JhengHei" Click="aboutButton_Click"/>
+            </Grid>
+            <Grid x:Name="itemsView" Margin="0,75,0,0">
+                <ListBox x:Name="itemsBox" Margin="10,10,10,55" Style="{DynamicResource listBoxStyle}" ItemContainerStyle="{DynamicResource ListBoxItemStyle1}" BorderBrush="#333195C3" Foreground="Black" MouseLeftButtonDown="itemsBox_MouseLeftButtonDown" SelectionChanged="itemsBox_SelectionChanged" GotFocus="itemsBox_GotFocus"/>
+                <Grid x:Name="buttonsView" Margin="10,285,10,10" Height="35" Visibility="Collapsed">
+                    <Button x:Name="deleteButton" Content="删除" Style="{DynamicResource normalButtonStyle}" Background="#33E61B1B" Foreground="#FFE61B1B" Margin="0,0,170,0" Click="deleteButton_Click"/>
+                    <Button x:Name="changeButton" Content="更改" Style="{DynamicResource normalButtonStyle}" Background="#331B6EE6" Foreground="#FF1B5CE6" Margin="170,0,0,0" Click="changeButton_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>
